@@ -1,2 +1,4 @@
-# gym-starter-kit
-OpenAI Gym Starter Kit
+# Gym Starter Kit
+
+This repository is Agent Development Environment for OpenAI Gym.
+
