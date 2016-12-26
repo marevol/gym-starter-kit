@@ -1,8 +1,14 @@
 # Gym Starter Kit
 
-This repository is Agent Development Environment for OpenAI Gym.
+Gym Starter Kit simplifies Agent development for OpenAI Gym.
+Using gym-start command, you can run your agent quickly(do not have to write codes for environment).
+Therefore, you can foucus on agent development.
 
 ## Getting Started
+
+### (Preparetion) Install OpenAI Gym
+
+See [Gym Installation](https://github.com/openai/gym#installation).
 
 ### Install gym-starter-kit
 
