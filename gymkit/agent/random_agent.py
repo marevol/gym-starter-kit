@@ -1,15 +1,12 @@
-class RandomAgent(object):
-    def __init__(self, action_space):
-        self.action_space = action_space
+# -*- coding: utf-8 -*-
+from __future__ import division, print_function, absolute_import, unicode_literals
+
+from gymkit.agent.gym_agent import GymKitAgent
+
+
+class RandomAgent(GymKitAgent):
+    def __init__(self, env):
+        super().__init__(env)
 
     def act(self, observation):
-        return self.action_space.sample()
-
-    def fit(self, observation, reward, done, info):
-        pass
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exception_type, exception_value, traceback):
-        pass
+        return self.env.action_space.sample()

@@ -19,12 +19,12 @@ Gym Starter Kit runs your agent in OpenAI Gym.
 For example, you can write the following agent in my\_agent.py:
 
     class MyAgent(object):
-        def __init__(self, action_space):
-            self.action_space = action_space
+        def __init__(self, env):
+            self.env = env
 
         # Return your action for the observation
         def act(self, observation):
-            return self.action_space.sample()
+            return self.env.action_space.sample()
 
         # Learn your action for the observation of act method
         def fit(self, observation, reward, done, info):

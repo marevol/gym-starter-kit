@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import division, print_function, absolute_import, unicode_literals
+
 import argparse
 import logging
 import os
@@ -22,6 +25,8 @@ def parse_args(args):
                         default='gymkit.agent.RandomAgent', help='Specify agent class name')
     parser.add_argument('--verbose', '-v', dest='verbose', action='store_true',
                         default=False, help='Display debug messages')
+    parser.add_argument('--disable-rendering', dest='disable_rendering', action='store_true',
+                        default=False, help='Disable window rendering')
     return parser.parse_args(args=args)
 
 
@@ -52,7 +57,7 @@ def create_agent(env, options):
     agent_name = agent_values[-1]
     mod = __import__(agent_module, globals(), locals(), fromlist=[agent_name])
     class_def = getattr(mod, agent_name)
-    return class_def(env.action_space)
+    return class_def(env)
 
 
 def main(args=None):
@@ -94,7 +99,8 @@ def main(args=None):
         with agent:
             logger.info('Episode %d', i + 1)
             while not done:
-                env.render()
+                if not options.disable_rendering:
+                    env.render()
                 logger.debug('O: %s', str(ob))
                 action = agent.act(ob)
                 logger.debug('A: %s', str(action))
