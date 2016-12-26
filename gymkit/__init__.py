@@ -1,10 +1,11 @@
 import argparse
 import logging
+import os
 import sys
 
-import gym
+from gym import envs
 from gym import wrappers
-import os
+import gym
 
 
 def parse_args(args):
@@ -58,8 +59,29 @@ def main(args=None):
     options = parse_args(args)
 
     logger = configure_logging(options)
-    env = create_gym_env(options)
-    agent = create_agent(env, options)
+
+    try:
+        env = create_gym_env(options)
+    except:
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.exception('Unknown environment %s.', options.env_id)
+        else:
+            env_ids = [x.id for x in envs.registry.all()]
+            env_ids.sort()
+            logger.error('Unknown environment %s. Available environments are:\n%s',
+                         options.env_id,
+                         '\n'.join(env_ids))
+        return 1
+
+    try:
+        agent = create_agent(env, options)
+    except:
+        if logger.isEnabledFor(logging.DEBUG):
+            logger.exception('Agent %s is not found.', options.agent_name)
+        else:
+            logger.error('Agent %s is not found.', options.agent_name)
+        env.close()
+        return 1
 
     logger.info('Observation Space: %s', str(env.observation_space))
     logger.info('Action Space: %s', str(env.action_space))
@@ -85,6 +107,7 @@ def main(args=None):
         logger.info('Upload results from %s', options.outdir)
         gym.upload(options.outdir, api_key=options.api_key)
 
+    return 0
 
 if __name__ == '__main__':
     sys.exit(main())
