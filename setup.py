@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="gym-starter-kit",
-    version="0.0.2.dev1",
+    version="0.0.2",
     packages=['gymkit',
               'gymkit.agent'],
     author="Shinsuke Sugaya",
