@@ -14,7 +14,7 @@ Note: This module will be available on PyPI.
 ### Create Your Agent
 
 Gym Starter Kit runs your agent in OpenAI Gym.
-For example, the following agent is written in my\_agent.py:
+For example, you can write the following agent in my\_agent.py:
 
     class MyAgent(object):
         def __init__(self, action_space):
