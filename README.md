@@ -17,6 +17,7 @@ See [Gym Installation](https://github.com/openai/gym#installation).
 If you want to install development version, run as below:
 
     $ git clone https://github.com/marevol/gym-starter-kit.git
+    $ cd gym-starter-kit
     $ pip install .
 
 ### Create Your Agent
@@ -48,3 +49,10 @@ For example, you can write the following agent in my\_agent.py:
 
     $ gym-start --agent my_agent.MyAgent
 
+To specify an environment, use --env-id option:
+
+    $ gym-start --env-id Pong-v0
+
+To check available options, run as below:
+
+    $ gym-start -h
