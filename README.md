@@ -6,10 +6,12 @@ This repository is Agent Development Environment for OpenAI Gym.
 
 ### Install gym-starter-kit
 
+    $ pip install gym-starter-kit
+
+If you want to install development version, run as below:
+
     $ git clone https://github.com/marevol/gym-starter-kit.git
     $ pip install .
-
-Note: This module will be available on PyPI.
 
 ### Create Your Agent
 
