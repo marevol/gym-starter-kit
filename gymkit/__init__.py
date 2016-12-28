@@ -27,6 +27,8 @@ def parse_args(args):
                         default=False, help='Display debug messages')
     parser.add_argument('--disable-rendering', dest='disable_rendering', action='store_true',
                         default=False, help='Disable window rendering')
+    parser.add_argument('--disable-monitoring', dest='disable_monitoring', action='store_true',
+                        default=False, help='Disable window monitoring')
     return parser.parse_args(args=args)
 
 
@@ -45,7 +47,9 @@ def configure_logging(options):
 
 
 def create_gym_env(options):
-    env = wrappers.Monitor(directory=options.outdir, force=True)(gym.make(options.env_id))
+    env = gym.make(options.env_id)
+    if not options.disable_monitoring:
+        env = wrappers.Monitor(directory=options.outdir, force=True)(env)
     env.seed(0)
     return env
 
@@ -93,7 +97,6 @@ def main(args=None):
 
     # environment loop
     for i in range(options.episode_count):
-        reward = 0
         done = False
         ob = env.reset()
         with agent:
