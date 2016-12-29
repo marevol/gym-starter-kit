@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="gym-starter-kit",
-    version="0.0.3",
+    version="0.0.4.dev1",
     packages=['gymkit',
               'gymkit.agent'],
     author="Shinsuke Sugaya",
@@ -13,7 +13,7 @@ setup(
     description=("Gym Starter Kit: A running environment for developing OpenAI Gym agents."),
     keywords="machine learning",
     url="https://github.com/marevol/gym-starter-kit",
-    download_url='https://github.com/marevol/gym-starter-kit/tarball/0.0.3',
+    download_url='https://github.com/marevol/gym-starter-kit/tarball/0.0.4',
     classifiers=[
         "Programming Language :: Python :: 3",
         "Development Status :: 2 - Pre-Alpha",
