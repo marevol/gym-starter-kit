@@ -6,8 +6,7 @@ import logging
 import os
 import sys
 
-from gym import envs
-from gym import wrappers
+from gym import wrappers, envs
 import gym
 
 
@@ -49,7 +48,7 @@ def configure_logging(options):
 def create_gym_env(options):
     env = gym.make(options.env_id)
     if not options.disable_monitoring:
-        env = wrappers.Monitor(directory=options.outdir, force=True)(env)
+        env = wrappers.Monitor(env=env, directory=options.outdir, force=True)
     env.seed(0)
     return env
 
@@ -108,7 +107,9 @@ def main(args=None):
                 action = agent.act(ob)
                 logger.debug('A: %s', str(action))
                 ob, reward, done, info = env.step(action)
-                agent.fit(ob, reward, done, info)
+                result = agent.fit(ob, reward, done, info)
+                if result is not None:
+                    done = result
 
     env.close()
 

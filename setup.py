@@ -21,7 +21,7 @@ setup(
         "License :: OSI Approved :: Apache Software License",
     ],
     install_requires=[
-        'gym>=0.6.0'
+        'gym>=0.7.0'
     ],
     entry_points={
         "console_scripts": [
